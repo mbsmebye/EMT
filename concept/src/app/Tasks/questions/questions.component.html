@@ -1,0 +1,132 @@
+<button (click)="toggleSlide()">Slide</button>
+<div id="video_overlays" [@slideIn]="state" *ngIf="dataIsLoaded">
+  <h1 class="questionHeader col-12">
+    <span>{{ question.typewriterQuestionHeader }}</span
+    ><span [className]="useTypewriter ? 'invisible' : ''">{{
+      question.questionHeader
+    }}</span>
+  </h1>
+  <div *ngIf="question.taskType !== 'priorityTask'">
+    <div
+      *ngFor="let alternative of question.alternatives"
+      class="row alternative-6 justify-content-center"
+    >
+      <div class="col" *ngIf="alternative.typewriterText !== ''">
+        <label class="container">
+          <input
+            type="checkbox"
+            (click)="checkboxClicked(alternative.alternativeId)"
+            id="{{ 'alt' + alternative.alternativeId }}"
+          />
+          <span *ngIf="question.taskType === 'basicTask'" class="checkmark"></span>
+          <img
+            *ngIf="question.taskType === 'iconTask'"
+            class="checkmark-icon"
+            [src]="
+              alternativeIsChecked(alternative.alternativeId)
+                ? 'assets/icons/Task2Icons/alt1.png'
+                : 'assets/icons/Task2Icons/alt2.png'
+            "
+          />
+        </label>
+      </div>
+      <div class="col-8">
+        <span> {{ alternative.typewriterText }} </span>
+        <span [className]="useTypewriter ? 'invisible' : ''">
+          {{ alternative.alternativeText }}</span
+        >
+      </div>
+      <div class="col">
+        <img
+          src="assets/icons/Task2Icons/alt6.png"
+          (click)="playSound(alternative.alternativeId)"
+          class="sound-button"
+          [@fadeIn]="showSoundButtons[alternative.alternativeId]"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- -----------------------html for least-desirable oppgave------------------------- -->
+
+  <div *ngIf="question.taskType === 'priorityTask'">
+    <div
+      *ngFor="let alternative of displayedQuestion.alternatives"
+      class="row alternative-6 justify-content-center"
+    >
+      <div class="col-1 align-self-center">
+        <img
+          src="assets/icons/Task2Icons/alt6.png"
+          (click)="playSound(alternative.alternativeId)"
+          class="sound-button"
+        />
+      </div>
+
+      <div class="col-1 align-self-center">
+        <img src="assets/icons/Task2Icons/alt6.png" class="alternative-icon" />
+      </div>
+
+      <div class="col-7 align-self-center">
+        <span class="alternativeText">{{ alternative.alternativeText }}</span>
+      </div>
+
+      <div class="col-1 align-self-center">
+        <button
+          [className]="
+            isChecked(alternative.alternativeId, 1)
+              ? 'radio-button-checked'
+              : 'radio-button'
+          "
+          (click)="radiobuttonClicked(alternative.alternativeId, 1)"
+        >
+          1</button
+        ><br />
+        <span class="buttonText">Least</span>
+      </div>
+      <div class="col-1 align-self-center">
+        <button
+          [className]="
+            isChecked(alternative.alternativeId, 2)
+              ? 'radio-button-checked'
+              : 'radio-button'
+          "
+          (click)="radiobuttonClicked(alternative.alternativeId, 2)"
+        >
+          2</button
+        ><br />
+        <span class="buttonText">More</span>
+      </div>
+      <div class="col-1 align-self-center">
+        <button
+          [className]="
+            isChecked(alternative.alternativeId, 3)
+              ? 'radio-button-checked'
+              : 'radio-button'
+          "
+          (click)="radiobuttonClicked(alternative.alternativeId, 3)"
+        >
+          3
+        </button>
+        <br />
+        <span class="buttonText">Most</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ------------------------------------------------ -->
+
+  <div class="row button-row" [@fadeIn]="buttonRow">
+    <div class="col-6" align="center">
+      <button class="btn-basic" (click)="replayTask()">Replay &#10226;</button>
+    </div>
+    <div class="col-6" align="center">
+      <button
+        class="btn-basic"
+        [disabled]="!correctNumberOfAlternativesSelected()"
+        (click)="completeSituation"
+      >
+        Complete &#8594;
+      </button>
+    </div>
+  </div>
+</div>
