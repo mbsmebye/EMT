@@ -1,11 +1,12 @@
 <div id="video_box">
-<task-questions
+<questions
   (replayClicked)="onReplayClicked($event)"
+  (completeClicked)="onCompleteClicked($event)"
   [showQuestion]="videoHasEnded"
-  [task]="2"
-  [scenario]="3"
+  [situation]="situation"
+  [scenario]="scenario"
   [useTypewriter]="false"
-></task-questions>
+></questions>
 <div>
     <video
       #taskVideo

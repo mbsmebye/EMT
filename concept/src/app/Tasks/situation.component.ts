@@ -1,5 +1,6 @@
 import {
   Component,
+  Input,
   Output,
   EventEmitter,
   ViewChild,
@@ -15,7 +16,8 @@ export class SituationComponent {
   @Output() messageEvent = new EventEmitter<string>();
   @ViewChild("taskVideo", { static: true }) taskVideo: ElementRef;
   videoHasEnded: boolean = false;
-  taskTwo: number = 2;
+  @Input() situation: number;
+  @Input() scenario: number;
 
   questions: string[] = ["question 1:", "question 2:"];
 

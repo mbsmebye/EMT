@@ -9,7 +9,7 @@ import { DOCUMENT } from "@angular/common";
 export class AppComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private document: any) {}
   elem: any;
-  task: number = 0;
+  situation: number = 1;
 
   fullscreen: Boolean = false;
 
@@ -29,8 +29,8 @@ export class AppComponent implements OnInit {
     this.fullscreen = true;
   }
 
-  nextTask($event) {
+  nextSituation($event) {
     console.log($event);
-    this.task++;
+    this.situation++;
   }
 }

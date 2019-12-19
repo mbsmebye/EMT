@@ -13,7 +13,7 @@ import { slideInAnimation, fadeInAnimation } from "src/app/animations";
 import { QuestionService } from "./question.service";
 
 @Component({
-  selector: "task-questions",
+  selector: "questions",
   templateUrl: "./questions.component.html",
   styleUrls: ["./questions.component.css"],
   animations: [slideInAnimation, fadeInAnimation],
@@ -21,7 +21,7 @@ import { QuestionService } from "./question.service";
 })
 export class QuestionsComponent implements OnInit {
   state: string = "hidden";
-  @Input() task: number;
+  @Input() situation: number;
   @Input() scenario: number;
   @Input() showQuestion: boolean = false;
   selectedCheckboxes: number[] = [];
@@ -37,13 +37,15 @@ export class QuestionsComponent implements OnInit {
   errorMessage: string;
   dataIsLoaded: boolean = false;
   @Output() replayClicked: EventEmitter<null> = new EventEmitter();
+  @Output() completeClicked: EventEmitter<null> = new EventEmitter();
+
 
   question: Question;
 
   constructor(private questionService: QuestionService) {}
 
   ngOnInit() {
-    this.questionService.getQuestion(this.scenario, this.task).subscribe({
+    this.questionService.getQuestion(this.scenario, this.situation).subscribe({
       next: data => {
         this.question = new Question(data);
         this.setUp();
@@ -66,7 +68,7 @@ export class QuestionsComponent implements OnInit {
     this.setUpRadiobuttonsAndCheckboxes();
     if (this.useTypewriter) {
       this.question.setUpTypewriting();
-      this.buttonRow = "hide"
+      this.buttonRow = "hide";
     }
   }
 
@@ -82,22 +84,26 @@ export class QuestionsComponent implements OnInit {
 
   setUpSoundButtonsAndAudio() {
     this.question.alternatives.forEach(element => {
-      this.showSoundButtons[element.alternativeId] = "hide";
+      this.showSoundButtons[element.alternativeId] = this.useTypewriter
+        ? "hide"
+        : "show";
       let audio = document.createElement(`audio`);
-      audio.src = `/assets/sounds/Task${this.task}/${element.alternativeId}.mp3`;
+      audio.src = `/assets/sounds/Task${this.situation}/${element.alternativeId}.mp3`;
       audio.setAttribute(
         "id",
-        `audio_task${this.task}_id${element.alternativeId}`
+        `audio_task${this.situation}_id${element.alternativeId}`
       );
       this.audioList[element.alternativeId] = audio;
     });
   }
 
   resetVisibleComponents() {
-    this.question.alternatives.forEach(element => {
-      this.showSoundButtons[element.alternativeId] = "hide";
-    });
-    this.resetTextForTypewriting();
+    if (this.useTypewriter) {
+      this.question.alternatives.forEach(element => {
+        this.showSoundButtons[element.alternativeId] = "hide";
+      });
+      this.resetTextForTypewriting();
+    }
   }
 
   resetTextForTypewriting() {
@@ -118,12 +124,14 @@ export class QuestionsComponent implements OnInit {
     this.sound.play();
   }
 
-  replayTask() {
+  async replayTask() {
     this.toggleSlide();
     this.replayClicked.emit();
-    this.sleep(1000);
+    await this.sleep(1000);
     this.resetVisibleComponents();
   }
+
+  completeSituation() {}
 
   toggleSlide() {
     this.state = this.state === "hidden" ? "visible" : "hidden";
@@ -195,7 +203,7 @@ export class QuestionsComponent implements OnInit {
       .appendChild(this.audioList[altToBeTyped.alternativeId]);
     let audio = <HTMLAudioElement>(
       document.getElementById(
-        `audio_task${this.task}_id${altToBeTyped.alternativeId}`
+        `audio_task${this.situation}_id${altToBeTyped.alternativeId}`
       )
     );
 
