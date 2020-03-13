@@ -9,7 +9,6 @@ import { DOCUMENT } from "@angular/common";
 export class AppComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private document: any) {}
   elem: any;
-  situation: number = 1;
 
   fullscreen: Boolean = false;
 
@@ -27,10 +26,5 @@ export class AppComponent implements OnInit {
       element.webkitRequestFullScreen();
     }
     this.fullscreen = true;
-  }
-
-  nextSituation($event) {
-    console.log($event);
-    this.situation++;
   }
 }
