@@ -1,0 +1,16 @@
+<task
+  [situation]="firstElement.situation"
+  [task]="firstElement.task"
+  (taskComplete)="goToNextTask($event)"
+  [className]="currentDisplayedElement == 'first' ? 'foreground' : 'background'"
+  [playVideo]="playFirstElementVideo"
+></task>
+<task
+  [situation]="secondElement.situation"
+  [task]="secondElement.task"
+  (taskComplete)="goToNextTask($event)"
+  [className]="
+    currentDisplayedElement == 'second' ? 'foreground' : 'background'
+  "
+  [playVideo]="playSecondElementVideo"
+></task>

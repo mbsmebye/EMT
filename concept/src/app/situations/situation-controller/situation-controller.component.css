@@ -1,0 +1,12 @@
+.background {
+  z-index: -100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.foreground {
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+}

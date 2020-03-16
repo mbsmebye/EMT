@@ -1,0 +1,31 @@
+{
+  "questionHeader": "Of the following 6 stakeholders, pick the 2 you think is most negatively affected by Graceramics' business activities",
+  "alternatives": [
+    {
+      "alternativeId": 1,
+      "alternativeText": "a) The marine life in the small river just nearby Graces' workshop"
+    },
+    {
+      "alternativeId": 2,
+      "alternativeText": "b) Children under 12 working where the clay is excavated"
+    },
+    {
+      "alternativeId": 3,
+      "alternativeText": "c) Max, the employee, wants higher wage"
+    },
+    {
+      "alternativeId": 4,
+      "alternativeText": "d) People growing food in the surrounding neighbourhood"
+    },
+    {
+      "alternativeId": 5,
+      "alternativeText": "e) The local council chairman representing the area"
+    },
+    {
+      "alternativeId": 6,
+      "alternativeText": "f) The neighbouring market place and sellers of ceramic products"
+    }
+  ],
+  "alternativesToBeSelected": 3,
+  "questionType": "multiple-choice-icons-question"
+}

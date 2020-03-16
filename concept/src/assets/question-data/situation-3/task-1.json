@@ -1,0 +1,31 @@
+{
+  "questionHeader": "Select 2 out of 6 actions of the hotel that have the most negative environmental or ethical impact for the community",
+  "alternatives": [
+    {
+      "alternativeId": 1,
+      "alternativeText": "a) The hotel throws away all cups after these types of events"
+    },
+    {
+      "alternativeId": 2,
+      "alternativeText": "b) The hotel uses multiple suppliers"
+    },
+    {
+      "alternativeId": 3,
+      "alternativeText": "c) The hotel has overtime work without extra pay"
+    },
+    {
+      "alternativeId": 4,
+      "alternativeText": "d) The hotel uses aluminium kettles to cook food"
+    },
+    {
+      "alternativeId": 5,
+      "alternativeText": "e) The hotel offers training possibilities for the staff"
+    },
+    {
+      "alternativeId": 6,
+      "alternativeText": "f)  The hotel serves dishes with crickets"
+    }
+  ],
+  "alternativesToBeSelected": 3,
+  "questionType": "multiple-choice-question"
+}

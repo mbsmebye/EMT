@@ -1,0 +1,24 @@
+<div id="video_box">
+  <!-- <base-question
+    (replayClicked)="onReplayClicked($event)"
+    (completeClicked)="onCompleteClicked($event)"
+    [showQuestion]="videoHasEnded"
+    [task]="task"
+    [situation]="situation"
+    [useTypewriter]="false"
+  ></base-question> -->
+  <template question-host></template>
+  <div>
+    <video
+      #taskVideo
+      [class]="videoHasEnded ? 'blur' : ''"
+      (ended)="videoEnded()"
+      id="taskVideo"
+    >
+      <source
+        src="assets/videoes/situation-{{ situation }}/task{{ task }}.mp4"
+        type="video/mp4"
+      />
+    </video>
+  </div>
+</div>

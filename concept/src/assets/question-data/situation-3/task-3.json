@@ -1,0 +1,23 @@
+{
+  "questionHeader": "Based on the fact that you have got to know this information, rate each of the decisions below on its appropriateness for Graceramics. 1 stands for least desirable decision, 2 stands for desirable decision and 3 stands for most desirable decision. What would you do?",
+  "alternatives": [
+    {
+      "alternativeId": 1,
+      "alternativeText": "a) You negotiates with the hotel to change the design to something that can be re-labelled and re-used."
+    },
+    {
+      "alternativeId": 2,
+      "alternativeText": "b) You request the hotel to return the cups so that she can recycle them. "
+    },
+    {
+      "alternativeId": 3,
+      "alternativeText": "c) You reject the order without questions."
+    },
+    {
+      "alternativeId": 4,
+      "alternativeText": "d) You accept the order without questions and reservations"
+    }
+  ],
+  "alternativesToBeSelected": 4,
+  "questionType": "priority-question"
+}
