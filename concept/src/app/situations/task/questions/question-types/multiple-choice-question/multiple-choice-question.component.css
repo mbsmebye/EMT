@@ -1,0 +1,219 @@
+.container {
+  display: inline-block;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  align-items: center;
+  height: 100%;
+}
+
+/* Hide the browser's default checkbox */
+input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.button-row {
+  padding-top: 1rem;
+  position: relative;
+}
+
+.alternative-6 {
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.alternative-4 {
+  font-size: 1.5rem;
+}
+
+.alternative-text {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.questionHeader {
+  text-align: center;
+  font-size: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 0.5em;
+  font-size: 2rem;
+}
+
+.vertical-center {
+  vertical-align: middle;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  border: solid;
+  border-color: black;
+  border-width: 3px;
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 50%;
+  margin-top: -15px;
+  right: 0;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: rgb(202, 190, 140);
+}
+
+/* Create a custom checkbox */
+.checkmark-icon {
+  position: absolute;
+  top: 50%;
+  margin-top: -23px;
+  right: 0;
+  height: 45px;
+  width: 45px;
+}
+
+.checkmark-icon-checked {
+  position: absolute;
+  top: 50%;
+  margin-top: -23px;
+  right: 0;
+  height: 45px;
+  width: 45px;
+  background-color: #2196f3;
+  border-radius: 50%;
+}
+
+.alternative-icon {
+  height: 64px;
+  width: 64px;
+  top: 50%;
+  margin-top: -32px;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.radio-button {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  border: solid;
+  border-color: black;
+}
+
+.radio-button-checked {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: transparent;
+  border: solid;
+  border-color: blue;
+}
+
+.radio-button:hover {
+  background-color: rgba(184, 172, 122, 0.3);
+}
+
+.buttonText {
+  font-size: 1rem;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark-icon {
+  border-radius: 50%;
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.container:hover input ~ .checkmark-icon-checked {
+  border-radius: 50%;
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.sound-button {
+  height: 36px;
+  cursor: pointer;
+  top: 50%;
+  position: absolute;
+  margin-top: -18px;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+/* .container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+} */
+
+.btn-replay-and-complete {
+  font-weight: bold;
+  width: 20rem;
+  height: 5rem;
+  border: transparent;
+  border-color: black;
+  border-radius: 4rem;
+  background: rgba(202, 190, 140, 0.883);
+  font-size: 2rem;
+}
+
+.btn-replay-and-complete:disabled {
+  background: rgba(184, 182, 175, 0.35);
+}
+
+.btn-replay-and-complete:hover:not([disabled]) {
+  background-color: rgba(184, 172, 122, 0.9);
+}
+
+#video_overlays {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  position: absolute;
+  margin: 0 auto;
+  width: 90%;
+  max-height: 90%;
+  background-color: #fff;
+  z-index: 300000;
+  background: rgba(253, 244, 204, 0.8);
+  overflow: auto;
+  padding: 2rem;
+}

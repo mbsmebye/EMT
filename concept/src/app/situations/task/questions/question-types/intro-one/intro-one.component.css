@@ -1,0 +1,38 @@
+.overlay {
+  position: absolute;
+  margin: 0 auto;
+  right: 5%;
+  bottom: 0;
+  z-index: 300000;
+  width: 47%;
+  height: 20%;
+}
+
+.btn {
+  font-weight: bold;
+  width: 40%;
+  height: 40%;
+  border: transparent;
+  border-color: black;
+  border-radius: 2.5vw;
+  background: #bfbfbf;
+  font-size: 2vw;
+  position: absolute;
+  top: 25%;
+}
+
+.btn:disabled {
+  background: rgba(184, 182, 175, 0.35);
+}
+
+.btn:hover:not([disabled]) {
+  background-color: #a0a0a0;
+}
+
+.btn-complete {
+  right: 6%;
+}
+
+.btn-replay {
+  left: 6%;
+}
