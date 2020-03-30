@@ -10,12 +10,13 @@ import {
   ComponentRef,
   ComponentFactory
 } from "@angular/core";
-import { QuestionService } from "../questions/question.service";
-import { Question } from "../questions/question";
-import { BaseQuestionComponent } from "../questions/base-question.component";
-import { QuestionDirective } from "../questions/question.directive";
-import { MultipleChoiceQuestionComponent } from "../questions/question-types/multiple-choice-question/multiple-choice-question.component";
-import { PriorityQuestionComponent } from "../questions/question-types/priority-question/priority-question.component";
+import { QuestionService } from "./questions/question.service";
+import { Question } from "./questions/question";
+import { BaseQuestionComponent } from "./questions/base-question.component";
+import { QuestionDirective } from "./questions/question.directive";
+import { MultipleChoiceQuestionComponent } from "./questions/question-types/multiple-choice-question/multiple-choice-question.component";
+import { PriorityQuestionComponent } from "./questions/question-types/priority-question/priority-question.component";
+import { IntroOneComponent } from "./questions/question-types/intro-one/intro-one.component";
 
 @Component({
   selector: "task",
@@ -30,10 +31,8 @@ export class TaskComponent {
   ) {}
 
   ngOnInit() {
-    this.loadQuestion();
-    if (this.situation === 3 && this.task === 1) {
-      this.taskVideo.nativeElement.play();
-      console.log("heyo");
+    if (this.situation != -1) {
+      this.loadQuestion();
     }
   }
 
@@ -42,7 +41,7 @@ export class TaskComponent {
   @Output() taskComplete: EventEmitter<null> = new EventEmitter();
   @ViewChild("taskVideo", { static: true }) taskVideo: ElementRef;
   @Input() task: number;
-  @Input() situation: number;
+  @Input() situation = 0;
   @Input() playVideo: false;
   questionData: Question;
   errorMessage: string;
@@ -50,9 +49,7 @@ export class TaskComponent {
   useTypewriter = false;
 
   videoEnded() {
-    (<BaseQuestionComponent>(
-      this.childQuestionComponent.instance
-    )).slideInQuestion();
+    (<BaseQuestionComponent>this.childQuestionComponent.instance).videoEnded();
   }
 
   loadQuestion() {
@@ -107,6 +104,11 @@ export class TaskComponent {
           PriorityQuestionComponent
         );
         break;
+      case "intro-one":
+        componentFactory = this._componentFactoryResolver.resolveComponentFactory(
+          IntroOneComponent
+        );
+        break;
       default:
         throw new Error(
           `Invalid question type. Please check if task-${question.task}.json has a valid questionType set.`
@@ -134,13 +136,17 @@ export class TaskComponent {
 
       if (changedProp.isFirstChange()) {
         log.push(`Initial value of ${propName} set to ${to}`);
+        if (propName === "playVideo" && to === "true") {
+          console.log("initPlayVideo");
+          this.taskVideo.nativeElement.play();
+        }
       } else {
         let from = JSON.stringify(changedProp.previousValue);
         if (propName === "playVideo" && from === "false" && to === "true") {
           console.log("playVideo");
           this.taskVideo.nativeElement.play();
         }
-        if (propName === "task") {
+        if (propName === "task" && to !== "-1") {
           this.taskVideo.nativeElement.load();
           this.loadQuestion();
         }

@@ -1,8 +1,9 @@
 export class SituationList {
   list = [
+    { situationNumber: 0, taskList: [1] },
     { situationNumber: 1, taskList: [] },
     { situationNumber: 2, taskList: [] },
-    { situationNumber: 3, taskList: [1, 2, 3] },
+    { situationNumber: 3, taskList: [2, 3] },
     { situationNumber: 4, taskList: [] }
   ];
   currentSituation: ITaskList;
